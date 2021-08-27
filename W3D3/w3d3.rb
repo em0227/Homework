@@ -65,3 +65,24 @@ p reverse("id") # => "di"
 p reverse("") # => ""
 
 p '------------------------'
+
+
+def pascal_row(n)
+    return [1] if n == 0
+    return [1, 1] if n == 1
+
+    prev_row = pascal_row(n-1)
+    result = [] 
+
+    i = 0
+    while i < prev_row.length-1
+        result << prev_row[i] + prev_row[i+1]
+        i += 1
+    end
+
+    [1] + result + [1]
+end
+
+p pascal_row(1)
+p pascal_row(2)
+p pascal_row(3)
