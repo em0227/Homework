@@ -35,7 +35,7 @@ class Queue
     end
 end
 
-class Map
+class Map #solution requries to use array
     def initialize
         @map = Hash.new {|h, k| h[k] = []}
     end
