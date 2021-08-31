@@ -71,22 +71,20 @@ class Board
 
     ending_pos = i - 1
 
-    case next_turn(ending_pos)
-    when :prompt
-      :prompt
-    end
     render
+    next_turn(ending_pos)
+    
   end
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
     if ending_cup_idx == 6 || ending_cup_idx == 13
-      return :prompt
-    elsif cups[ending_cup_idx].size == 0
+      :prompt
+    elsif cups[ending_cup_idx].size == 1
       #render
-      return :switch
-    elsif cups[ending_cup_idx].size > 0
-      return ending_cup_idx
+      :switch
+    else #elsif cups[ending_cup_idx].size > 1
+      ending_cup_idx
     end
 
   end
