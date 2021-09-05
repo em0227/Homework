@@ -50,7 +50,7 @@ def slow_dance(dir, arr)
 end
 
 def fast_dance(dir, data)
-    data.each {|k, v| return v if k == dir}
+    data.each {|k, v| return v if k == dir} #don't need to iterate, solution just uses data[k]
 end
 
 tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
