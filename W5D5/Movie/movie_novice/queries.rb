@@ -23,7 +23,7 @@
 
 def find_angelina
   #find Angelina Jolie by name in the actors table
-  #Actor.where('name = ?', 'Angelina Jolie') is this returning hash or ins??
+  #Actor.where('name = ?', 'Angelina Jolie') is this returning hash or ins?? is a hash-like object, can also use pluck
   Actor.find_by(name: 'Angelina Jolie')
 end
 
@@ -72,11 +72,10 @@ def pulp_fiction_actors
   # practice using joins
   # display the id and name of all actors in the movie Pulp Fiction
   # hint: use 'select', 'joins', 'where'
-  Actor.distinct
-    .select('id', 'name')
-    .joins(:castings, :movies) #used (casting: :movies) nested join don't work??
-    .where('title = ?', 'Pulp Fiction')
-    #.uniq  #why does it have duplicate??
+  Actor.select('id', 'name').joins(castings: :movie).where('title = ?', 'Pulp Fiction')
+  #(:castings, :movies) can also works but need to add distinct to delete duplicates
+  #solution simply has joins(:movies)
+  #.uniq  #why does it have duplicate??
 end
 
 def uma_movies
@@ -84,9 +83,9 @@ def uma_movies
   # display the id, title, and year of movies Uma Thurman has acted in
   # order them by ascending year
   # hint: use 'select', 'joins', 'where', and 'order'
-  Movie.distinct
+  Movie
     .select('id', 'title', 'yr')
-    .joins(:castings, :actors)
+    .joins(:actors) #originally wrote joins(:actors, :castings) and will cause duplicates
     .where('name = ?', 'Uma Thurman')
     .order('yr ASC')
     #.uniq
