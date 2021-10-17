@@ -61,7 +61,8 @@
 //     //forgot to call toUpperCase first
 // }
 
-// madLib('make', 'best', 'guac')
+// madLib('make', 'best', 'guac') 
+//note: could use $() string interpolate too
 
 // function isSubstring(searchString, subString) {
 //     console.log(searchString.includes(subString))
@@ -86,6 +87,19 @@
 
 // fizzBuzz([3, 5, 15])
 
+// //solution has
+// function fizzBuzz(array) {
+//     const fizzBuzzArr = [];
+
+//     array.forEach(el => {
+//         if ((el % 3 === 0) ^ (el % 5 === 0)) {
+//             fizzBuzzArr.push(el);
+//         }
+//     });
+
+//     return fizzBuzzArr;
+// }
+
 function isPrime(num) {
     for (let i = 2; i < num; i++) { //need to use ; here
         if (num % i === 0) {return false}
@@ -109,3 +123,22 @@ function sumOfNPrimes(n) {
 
 sumOfNPrimes(0)
 sumOfNPrimes(4)
+
+// solution
+// // sumOfNPrimes
+
+// function sumOfNPrimes(n) {
+//     let sum = 0;
+//     let countPrimes = 0;
+//     let i = 2;
+
+//     while (countPrimes < n) {
+//         if (isPrime(i)) {
+//             sum += i;
+//             countPrimes++;
+//         }
+//         i++;
+//     }
+
+//     return sum;
+// }

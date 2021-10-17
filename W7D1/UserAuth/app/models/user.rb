@@ -6,7 +6,7 @@ class User < ApplicationRecord
     #validate :password_valid?
     before_validation :ensure_session_token
 
-    #attr_reader :password
+    attr_reader :password
 
     # def password_valid?
     #     if !password_digest.valid?
@@ -33,7 +33,7 @@ class User < ApplicationRecord
         self.session_token
     end
 
-    private
+    
 
     def ensure_session_token
         self.session_token ||= self.class.generate_session_token
@@ -51,6 +51,8 @@ class User < ApplicationRecord
     def is_password?(password)
         BCrypt::Password.new(self.password_digest).is_password?(password)
     end
+
+    
 
     
 end
