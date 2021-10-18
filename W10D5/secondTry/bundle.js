@@ -154,12 +154,13 @@ function (_React$Component) {
 
     _this.state = {
       result: 0,
-      num1: [],
-      num2: []
+      num1: "",
+      num2: ""
     };
     _this.setNum1 = _this.setNum1.bind(_assertThisInitialized(_assertThisInitialized(_this))); //could also use arrow function so no need to bind
 
     _this.setNum2 = _this.setNum2.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.conductMath = _this.conductMath.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   } //your code here
 
@@ -167,36 +168,77 @@ function (_React$Component) {
   _createClass(Calculator, [{
     key: "setNum1",
     value: function setNum1(event) {
-      event.preventDefault();
-      if (this.num1 === []) alert("error");
-      return parseInt(this.num1[0]);
+      event.preventDefault(); // debugger
+
+      if (event.target.value === "") alert("error");
+      var newNum = event.target.value;
+      return this.setState({
+        num1: parseInt(newNum)
+      });
     }
   }, {
     key: "setNum2",
     value: function setNum2(event) {
       event.preventDefault();
-      if (this.num2 === []) alert("error");
-      return parseInt(this.num1[0]);
+      if (event.target.value === "") alert("error");
+      var newNum = event.target.value;
+      return this.setState({
+        num2: parseInt(newNum)
+      });
     }
   }, {
     key: "conductMath",
     value: function conductMath(event) {
-      event.preventDefault();
+      event.preventDefault(); // debugger
+
+      var newResult;
+
+      switch (event.target.innerHTML) {
+        case '+':
+          newResult = this.state.num1 + this.state.num2;
+          this.setState({
+            result: newResult
+          });
+          break;
+
+        case '-':
+          newResult = this.state.num1 - this.state.num2;
+          this.setState({
+            result: newResult
+          });
+          break;
+
+        case '*':
+          newResult = this.state.num1 * this.state.num2;
+          this.setState({
+            result: newResult
+          });
+          break;
+
+        case '/':
+          newResult = this.state.num1 / this.state.num2;
+          this.setState({
+            result: newResult
+          });
+          break;
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var math = ["+", "-", "*", "/"];
+      var _this2 = this;
+
+      var operations = ["+", "-", "*", "/"];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.result), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        OnChange: this.setNum1,
-        value: this.state.num1[0]
+        onChange: this.setNum1
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        OnChange: this.setNum2,
-        value: this.state.num2[0]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        key: math,
-        OnClick: this.conductMath
-      }, math)));
+        onChange: this.setNum2
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Clear"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, operations.map(function (operation) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          key: operation,
+          onClick: _this2.conductMath
+        }, operation);
+      })));
     }
   }]);
 
